@@ -37,6 +37,7 @@ public class ReviewRestController {
 
     /**
      * Връща всички ревюта за дадена книга.
+     * http://localhost:8081/api/reviews/book/{bookIsbn}
      */
     @GetMapping("/book/{bookIsbn}")
     public List<Review> getByBook(@PathVariable UUID bookIsbn) {
