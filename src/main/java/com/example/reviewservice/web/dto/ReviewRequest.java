@@ -1,9 +1,12 @@
 package com.example.reviewservice.web.dto;
 
 import jakarta.validation.constraints.*;
+import lombok.Builder;
+
 
 import java.util.UUID;
 
+@Builder
 public record ReviewRequest(
         @NotNull
         UUID bookIsbn,
