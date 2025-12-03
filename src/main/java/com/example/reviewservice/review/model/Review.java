@@ -19,10 +19,10 @@ public class Review {
     private UUID id;
 
     @Column(nullable = false)
-    private UUID bookIsbn;   // връзка към Book в основното приложение (по ISBN)
+    private UUID bookIsbn;
 
     @Column(nullable = false)
-    private String username; // или userId, както прецениш
+    private String username;
 
     @Column(nullable = false)
     private int rating;      // 1-5

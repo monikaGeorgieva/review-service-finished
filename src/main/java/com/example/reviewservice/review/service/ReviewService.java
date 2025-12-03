@@ -17,31 +17,22 @@ public class ReviewService {
 
     private final ReviewRepository reviewRepository;
 
-    /**
-     * Връща всички ревюта.
-     */
+
     public List<Review> findAll() {
         return reviewRepository.findAll();
     }
 
-    /**
-     * Връща всички ревюта за конкретна книга.
-     */
     public List<Review> findAllByBookIsbn(UUID bookIsbn) {
         return reviewRepository.findAllByBookIsbn(bookIsbn);
     }
 
-    /**
-     * Намира едно ревю по id.
-     */
+
     public Review findById(UUID id) {
         return reviewRepository.findById(id)
                 .orElseThrow(() -> new ReviewNotFoundException(id));
     }
 
-    /**
-     * Създава ново ревю.
-     */
+
     public Review create(ReviewRequest request) {
         LocalDateTime now = LocalDateTime.now();
 
@@ -57,9 +48,7 @@ public class ReviewService {
         return reviewRepository.save(review);
     }
 
-    /**
-     * Обновява съществуващо ревю.
-     */
+
     public Review update(UUID id, ReviewRequest request) {
         Review existing = reviewRepository.findById(id)
                 .orElseThrow(() -> new ReviewNotFoundException(id));
@@ -73,9 +62,7 @@ public class ReviewService {
         return reviewRepository.save(existing);
     }
 
-    /**
-     * Изтрива ревю.
-     */
+
     public void delete(UUID id) {
         if (!reviewRepository.existsById(id)) {
             throw new ReviewNotFoundException(id);
