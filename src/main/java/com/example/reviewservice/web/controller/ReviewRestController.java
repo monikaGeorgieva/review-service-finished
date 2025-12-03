@@ -19,52 +19,39 @@ public class ReviewRestController {
 
     private final ReviewService reviewService;
 
-    /**
-     * Връща всички ревюта.
-     */
+
     @GetMapping
     public List<Review> getAll() {
         return reviewService.findAll();
     }
 
-    /**
-     * Връща ревю по неговото id.
-     */
+
     @GetMapping("/{id}")
     public Review getById(@PathVariable UUID id) {
         return reviewService.findById(id);
     }
 
-    /**
-     * Връща всички ревюта за дадена книга.
-     * http://localhost:8081/api/reviews/book/{bookIsbn}
-     */
+
     @GetMapping("/book/{bookIsbn}")
     public List<Review> getByBook(@PathVariable UUID bookIsbn) {
         return reviewService.findAllByBookIsbn(bookIsbn);
     }
 
-    /**
-     * Създава ново ревю.
-     */
+
     @PostMapping
     public ResponseEntity<Review> create(@Valid @RequestBody ReviewRequest request) {
         Review created = reviewService.create(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
-    /**
-     * Обновява съществуващо ревю.
-     */
+
     @PutMapping("/{id}")
     public Review update(@PathVariable UUID id,
                          @Valid @RequestBody ReviewRequest request) {
         return reviewService.update(id, request);
     }
 
-    /**
-     * Изтрива ревю.
-     */
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable UUID id) {
         reviewService.delete(id);
